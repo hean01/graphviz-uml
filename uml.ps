@@ -27,6 +27,31 @@
     end
 } bind def
 
+/_start {
+    4 dict begin
+	/yr xdef /xr xdef /cy xdef /cx xdef
+	/savematrix matrix currentmatrix def
+	cx cy translate
+	xr 2 div /xs xdef
+	xs xs scale
+	0 0 1 0 360 arc
+	savematrix setmatrix
+    end
+} bind def
+
+/_stop {
+    4 dict begin
+	/yr xdef /xr xdef /cy xdef /cx xdef
+	/savematrix matrix currentmatrix def
+	cx cy translate
+	xr 2 div /xs xdef
+	xs xs scale
+	0 0 0.8 0 360 arc fill
+	0 0 1 0 360 arc
+	savematrix setmatrix
+    end
+} bind def
+
 /_actor {
     4 dict begin
     /yr xdef /xr xdef /cy xdef /cx xdef
@@ -73,7 +98,6 @@
     end
 } bind def
 
-% TODO: draw an actor
 /actor {
     10 dict begin
     /fflag xdef
@@ -98,6 +122,62 @@
     newpath 0.25 0.25 xs ys _actor stroke
     0 setgray
     newpath 0 0 xs ys _actor stroke
+    savematrix setmatrix
+    end
+} bind def
+
+/start {
+    10 dict begin
+    /fflag xdef
+    /sides xdef
+
+    aload pop
+    /y1 xdef /x1 xdef
+    pop	pop
+    /y0 xdef /x0 xdef
+    pop	pop pop pop
+
+    x1 x0 sub 2 div /xs xdef
+    y1 y0 sub 2 div /ys xdef
+    x0 xs add /xc xdef
+    y0 ys add /yc xdef
+
+    /savematrix matrix currentmatrix def
+    xc yc translate
+    0.85 setgray
+    newpath -0.25 -0.25 xs ys _start fill
+    0.25 setgray
+    newpath 0.25 0.25 xs ys _start fill
+    0 setgray
+    newpath 0 0 xs ys _start fill
+    savematrix setmatrix
+    end
+} bind def
+
+/stop {
+    10 dict begin
+    /fflag xdef
+    /sides xdef
+
+    aload pop
+    /y1 xdef /x1 xdef
+    pop	pop
+    /y0 xdef /x0 xdef
+    pop	pop pop pop
+
+    x1 x0 sub 2 div /xs xdef
+    y1 y0 sub 2 div /ys xdef
+    x0 xs add /xc xdef
+    y0 ys add /yc xdef
+
+    /savematrix matrix currentmatrix def
+    xc yc translate
+    0.85 setgray
+    newpath -0.25 -0.25 xs ys _stop stroke
+    0.25 setgray
+    newpath 0.25 0.25 xs ys _stop stroke
+    0 setgray
+    newpath 0 0 xs ys _stop stroke
     savematrix setmatrix
     end
 } bind def
