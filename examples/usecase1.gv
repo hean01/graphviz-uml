@@ -16,12 +16,20 @@ digraph G {
 	subgraph clusterSupport {label="Support"; labelloc="b"; peripheries=0;
 		 support [shape=actor]; };
 
+	subgraph clusterEmployers {sales; support;}
+	subgraph clusterObjectives {order; process_po; deliv_licenses; peripheries=0;}
 
 	/* Objectives */
 	order [label="Submit purchase order"];
+	process_po [label="Process purchase order"];
+	deliv_licenses [label="Deliver of licenses"];
 	
 	/* Relations */
 	customer->order
-	order->sales
-	order->support
+	order->process_po
+	process_po->sales
+	process_po->support
+	support->deliv_licenses
+	deliv_licenses->customer
+
 }
