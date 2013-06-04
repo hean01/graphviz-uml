@@ -1,0 +1,47 @@
+digraph G {
+	/* basic setup */
+	compound=true;
+	rankdir = LR;
+	fontname="Helvetica";
+	fontsize="10";
+	node [
+		shape=objective,
+		peripheries=0,
+		label="",
+		fontname="Helvetica",
+		fontsize="10"
+		];
+
+	/* Swimlanes */
+	subgraph clusterCustomer {
+		 label="Customer"; 
+		 labelloc="t";
+		 start [shape=start];
+		 order;
+		 stop [shape=stop];
+		 {rank=same; start;order;stop;}
+		 };
+
+	subgraph clusterSales {
+		 label="Sales"; labelloc="t";
+		 process_po;
+		 };
+
+	subgraph clusterSupport {
+		 label="Support";
+		 labelloc="t";
+		 deliv_licenses
+		 };
+
+	/* Activities */
+	order [label="Submit purchase order"];
+	process_po [label="Process purchase order"];
+	deliv_licenses [label="Deliver of licenses"];
+	
+	/* Flow */
+	start->order
+	order->process_po
+	process_po->deliv_licenses
+	deliv_licenses->stop
+
+}
