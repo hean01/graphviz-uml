@@ -66,5 +66,24 @@
     pop	pop
     /y0 xdef /x0 xdef
     pop	pop pop pop
+
+    x1 x0 sub 2 div /xs xdef
+    y1 y0 sub 2 div /ys xdef
+    x0 xs add /xc xdef
+    y0 ys add /yc xdef
+
+    /savematrix matrix currentmatrix def
+    xc yc translate
+    xs xs scale
+    newpath 0 0.30 0.225 0 360 arc
+    -0.5 -0.1 moveto
+    0.5 -0.1 lineto
+    0 0.1 moveto
+    0 -0.5 lineto
+    -0.45 -1.0 moveto
+    0 -0.5 lineto
+    0.45 -1.0 lineto
+    savematrix setmatrix
+    stroke
     end
 } bind def
