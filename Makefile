@@ -1,7 +1,7 @@
 
 EXAMPLES = examples/usecase1.png
 
-%.png: %.gv
+%.png: %.gv uml.ps
 	@echo "Rendering graph: $@"
 	@dot -Teps -l uml.ps $< | gs -q -dEPSCrop -dNOPAUSE -dBATCH -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sDEVICE=png16m -sOutputFile=$@ -
 
