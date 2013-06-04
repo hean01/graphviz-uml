@@ -1,8 +1,10 @@
 digraph G {
 	/* basic setup */
 	rankdir = LR;
+	fontname="Helvetica";
+	fontsize="10";
 	edge [arrowhead=none];
-	node [shape=objective,peripheries=0,label=""];
+	node [shape=objective,peripheries=0,label="",fontname="Helvetica", fontsize="10"];
 
 	/* Actors */
 	subgraph clusterCustomer {label="Customer"; labelloc="b"; peripheries=0;
@@ -16,7 +18,7 @@ digraph G {
 
 
 	/* Objectives */
-	order [label="Web Order"];
+	order [label="Submit product order"];
 	
 	/* Relations */
 	customer->order
