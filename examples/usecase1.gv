@@ -4,25 +4,25 @@ digraph G {
 	fontname="Helvetica";
 	fontsize="10";
 	edge [arrowhead=none];
-	node [shape=objective,peripheries=0,label="",fontname="Helvetica", fontsize="10"];
+	node [shape=objective, peripheries=0, label="", fontname="Helvetica", fontsize="10"];
 
 	/* Actors */
 	subgraph clusterCustomer {label="Customer"; labelloc="b"; peripheries=0;
-		 customer [shape=actor]; };
+		 customer [shape=actor, width=0.7, fixedsize=true];};
 
 	subgraph clusterSales {label="Sales"; labelloc="b"; peripheries=0;
-		 sales [shape=actor]; };
+		 sales [shape=actor, width=0.7, fixedsize=true];};
 
 	subgraph clusterSupport {label="Support"; labelloc="b"; peripheries=0;
-		 support [shape=actor]; };
+		 support [shape=actor, width=0.7, fixedsize=true];};
 
-	subgraph clusterEmployers {sales; support;}
+	/* Group Objectives */
 	subgraph clusterObjectives {order; process_po; deliv_licenses; peripheries=0;}
 
 	/* Objectives */
-	order [label="Submit purchase order"];
-	process_po [label="Process purchase order"];
-	deliv_licenses [label="Deliver of licenses"];
+	order [label="Submit\nPurchase Order"];
+	process_po [label="Process\nPurchase Order"];
+	deliv_licenses [label="Deliver of\nlicenses"];
 	
 	/* Relations */
 	customer->order
@@ -31,5 +31,4 @@ digraph G {
 	process_po->support
 	support->deliv_licenses
 	deliv_licenses->customer
-
 }
