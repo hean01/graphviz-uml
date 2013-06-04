@@ -18,7 +18,7 @@ digraph G {
 
 
 	/* Objectives */
-	order [label="Submit product order"];
+	order [label="Submit purchase order"];
 	
 	/* Relations */
 	customer->order
