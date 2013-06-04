@@ -1,0 +1,70 @@
+%  graphviz UML postscript library
+%  Copyright (C) 2013 Henrik Andersson <hean01@users.sourceforge.net>
+%
+%  This program is free software: you can redistribute it and/or modify
+%  it under the terms of the GNU General Public License as published by
+%  the Free Software Foundation, either version 3 of the License, or
+%  (at your option) any later version.
+%
+%  This program is distributed in the hope that it will be useful,
+%  but WITHOUT ANY WARRANTY; without even the implied warranty of
+%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%  GNU General Public License for more details.
+%
+%  You should have received a copy of the GNU General Public License
+%  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+/xdef {exch def} bind def
+
+/_ellipse {
+    4 dict begin
+	/yr xdef /xr xdef /cy xdef /cx xdef
+	/savematrix matrix currentmatrix def 
+	cx cy translate
+	xr yr scale
+	0 0 1 0 360 arc
+	savematrix setmatrix
+    end
+} bind def
+
+/objective {
+    10 dict begin
+    /fflag xdef
+    /sides xdef
+    
+    aload pop
+    /y1 xdef /x1 xdef
+    pop	pop
+    /y0 xdef /x0 xdef
+    pop	pop pop pop
+    
+    x1 x0 sub 2 div /xr xdef
+    y1 y0 sub 2 div /yr xdef
+    x0 xr add /xc xdef
+    y0 yr add /yc xdef
+
+    /savematrix matrix currentmatrix def 
+    xc yc translate
+    1 setgray
+    newpath -0.25 -0.25 xr yr _ellipse stroke
+    0.25 setgray
+    newpath 0.25 0.25 xr yr _ellipse stroke
+    0 setgray
+    newpath 0 0 xr yr _ellipse stroke
+    savematrix setmatrix
+    end
+} bind def
+
+% TODO: draw an actor
+/actor {
+    10 dict begin
+    /fflag xdef
+    /sides xdef
+    
+    aload pop
+    /y1 xdef /x1 xdef
+    pop	pop
+    /y0 xdef /x0 xdef
+    pop	pop pop pop
+    end
+} bind def
