@@ -1,0 +1,56 @@
+digraph G {
+	/* basic setup */
+	rankdir = LR;
+	fontname="Helvetica";
+	fontsize="10";
+	edge [arrowsize=0.7, arrowhead=none, fontsize="9"];
+
+	node [shape=objective, peripheries=0, label="", fontname="Helvetica", fontsize="10"];
+
+	/* Actors */
+	subgraph clusterWaiter {
+		 label="waiter"; labelloc="b"; peripheries=0; 
+		 waiter [shape=actor, width=0.7, fixedsize=true];
+	};
+	subgraph clusterClient {
+		 label="client"; labelloc="b"; peripheries=0; 
+		 client [shape=actor, width=0.7, fixedsize=true];
+	};
+
+	subgraph clusterChef {
+		 label="chef"; labelloc="b"; peripheries=0; 
+		 chef [shape=actor, width=0.7, fixedsize=true];
+	};
+
+	subgraph clusterCashier {
+		 label="cashier"; labelloc="b"; peripheries=0; 
+		 cashier [shape=actor, width=0.7, fixedsize=true];
+	};
+
+	/* Objectives */
+	order_food [label="Order food"];
+	order_wine [label="Order wine"];
+	serve_food [label="Serve food"];
+	serve_wine [label="Serve wine"];
+	eat_food [label="Eat food"];
+	drink_wine [label="Drink wine"];
+	cook_food [label="Cook food"];
+	pay_food [label="Pay for food"];
+	pay_wine [label="Pay for wine"];
+
+	/* Relations */
+	client->order_food [label="place order"]
+	order_wine->order_food [arrowhead=vee style=dashed label="<<extend>>"]
+	order_food->waiter [label="receive order"]
+	order_food->chef [label="confirm order"]
+	client->eat_food;
+	drink_wine->eat_food [arrowhead=vee style=dashed label="<<extend>>"]
+	client->pay_food [label="pay"]
+	waiter->pay_food [label="facilitate payment"]
+	waiter->serve_food
+	serve_wine->serve_food [arrowhead=vee style=dashed label="<<extend>>"]
+	pay_food->cashier [label="accept payment"]
+	pay_wine->pay_food [arrowhead=vee style=dashed label="<<extend>>"]
+	chef->cook_food;
+
+}

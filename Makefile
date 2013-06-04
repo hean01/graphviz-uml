@@ -1,7 +1,8 @@
 
 EXAMPLES = \
 	examples/usecase1.png \
-	examples/activity1.png
+	examples/activity1.png \
+	examples/usecase2.png
 
 %.png: %.gv uml.ps
 	@echo "Rendering graph: $@"
