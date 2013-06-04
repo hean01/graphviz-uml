@@ -1,0 +1,25 @@
+digraph G {
+	/* basic setup */
+	rankdir = LR;
+	edge [arrowhead=none];
+	node [shape=objective,peripheries=0,label=""];
+
+	/* Actors */
+	subgraph clusterCustomer {label="Customer"; labelloc="b"; peripheries=0;
+		 customer [shape=actor]; };
+
+	subgraph clusterSales {label="Sales"; labelloc="b"; peripheries=0;
+		 sales [shape=actor]; };
+
+	subgraph clusterSupport {label="Support"; labelloc="b"; peripheries=0;
+		 support [shape=actor]; };
+
+
+	/* Objectives */
+	order [label="Web Order"];
+	
+	/* Relations */
+	customer->order
+	order->sales
+	order->support
+}
