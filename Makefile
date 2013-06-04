@@ -1,9 +1,9 @@
 
-EXAMPLES = examples/usecase1.ps
+EXAMPLES = examples/usecase1.png
 
-%.ps: %.gv
-	@echo "Rendering graph: $<"
-	@dot -Tps -l uml.ps -o $@ $<
+%.png: %.gv
+	@echo "Rendering graph: $@"
+	@dot -Teps -l uml.ps $< | gs -q -dEPSCrop -dNOPAUSE -dBATCH -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sDEVICE=png16m -sOutputFile=$@ -
 
 all: $(EXAMPLES)
 
