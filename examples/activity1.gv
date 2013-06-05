@@ -5,7 +5,7 @@ digraph G {
 	fontname="Helvetica";
 	fontsize="10";
 	node [
-		shape=objective,
+		shape=activity,
 		peripheries=0,
 		label="",
 		fontname="Helvetica",
