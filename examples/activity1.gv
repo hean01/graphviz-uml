@@ -10,38 +10,37 @@ digraph G {
 		label="",
 		fontname="Helvetica",
 		fontsize="10"
-		];
+	];
 
 	/* Swimlanes */
-	subgraph clusterCustomer {
-		 label="Customer"; 
-		 labelloc="t";
-		 start [shape=start];
-		 order;
-		 stop [shape=stop];
-		 {rank=same; start;order;stop;}
-		 };
+	{  
+		edge [style=invis]
+		node [shape=plaintext, fontsize=12]
 
-	subgraph clusterSales {
-		 label="Sales"; labelloc="t";
-		 process_po;
-		 };
+		/* Actors */
+		customer[label="Customer"]
+		support[label="Support"]
+		sales[label="Sales"]
 
-	subgraph clusterSupport {
-		 label="Support";
-		 labelloc="t";
-		 deliv_licenses
-		 };
+		customer->sales->support
+	}
 
 	/* Activities */
+	start [shape=start, width=0.5, fixedsize=true]
 	order [label="Submit purchase order"];
 	process_po [label="Process purchase order"];
 	deliv_licenses [label="Deliver of licenses"];
-	
+	stop [shape=stop, width=0.5, fixedsize=true];
+
 	/* Flow */
 	start->order
 	order->process_po
 	process_po->deliv_licenses
 	deliv_licenses->stop
+
+	/* Assign activities to actors */
+	{ rank=same; customer; start; order; stop; }
+	{ rank=same; sales; process_po; }
+	{ rank=same; support; deliv_licenses; }
 
 }
