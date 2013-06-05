@@ -27,6 +27,23 @@
     end
 } bind def
 
+/_rrect {
+    4 dict begin
+	/y1 xdef /x1 xdef /y0 xdef /x0 xdef
+	x1 x0 sub 2 div x0 add /xh xdef
+	y1 y0 sub 2 div y0 add /yh xdef
+	y1 y0 sub 0.2 mul /r xdef
+	/savematrix matrix currentmatrix def 
+	xh y1 moveto
+	x1 y1 x1 yh r arct
+	x1 y0 xh y0 r arct
+	x0 y0 x0 yh r arct
+	x0 y1 xh y1 r arct
+	closepath
+	savematrix setmatrix
+    end
+} bind def
+
 /_start {
     4 dict begin
 	/yr xdef /xr xdef /cy xdef /cx xdef
@@ -178,6 +195,34 @@
     newpath 0.25 0.25 xs ys _stop stroke
     0 setgray
     newpath 0 0 xs ys _stop stroke
+    savematrix setmatrix
+    end
+} bind def
+
+/activity {
+    10 dict begin
+    /fflag xdef
+    /sides xdef
+
+    aload pop
+    /y1 xdef /x1 xdef
+    pop	pop
+    /y0 xdef /x0 xdef
+    pop	pop pop pop
+
+    x1 x0 sub 2 div /xs xdef
+    y1 y0 sub 2 div /ys xdef
+
+    /savematrix matrix currentmatrix def
+    0.85 setgray
+    -0.25 -0.25 translate
+    newpath x0 y0 x1 y1 _rrect stroke
+    0.25 setgray
+    0.5 0.5 translate
+    newpath x0 y0 x1 y1 _rrect stroke
+    0 setgray
+    -0.25 -0.25 translate
+    newpath x0 y0 x1 y1 _rrect stroke
     savematrix setmatrix
     end
 } bind def
